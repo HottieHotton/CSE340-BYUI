@@ -8,6 +8,10 @@
         width: 100%;
     }
 
+    nav ul li a{
+        padding: 10px;
+    }
+
     .hero-box{
         top: 25%;
         left: 0%;
@@ -17,7 +21,9 @@
     .hero-box button{
         font-size: 2vw;
     }
-
+    #inv-display li h2{
+        font-size: medium;
+      }
 }
 @media screen and (max-width: 600px){
     .grid-container{
@@ -37,4 +43,22 @@
     .reviews{
         grid-row: 1;
     }
+
+    #inv-display{
+        display: block;
+        text-decoration: none;
+        justify-content: center;
+    }
+    
+    #inv-display li{
+        list-style-type: none;
+        border: 1px solid black;
+        text-align: center;
+        padding: 20px;
+      }
+
+    #inv-display li a img{
+        width: 50%;
+        height: 50%;
+      }
 }
