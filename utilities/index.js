@@ -1,4 +1,4 @@
-const invModel = require("../models/inventory-model")
+const invModel = require("../models/inventory-model.js")
 const Util = {}
 
 Util.getNav = async function (req, res, next) {
