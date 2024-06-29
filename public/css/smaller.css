@@ -13,7 +13,7 @@
     }
 
     .hero-box{
-        top: 25%;
+        top: 40%;
         left: 0%;
         font-size: 2.5vw;
     }
@@ -24,8 +24,32 @@
     #inv-display li h2{
         font-size: medium;
       }
+    
+    .car{
+        display: block;
+        text-align: center;
+    }
+
+    .carImage img{
+        width: 100%;
+    }
+
+    .details{
+        margin-top: 10px;
+        margin-left: 0;
+        padding-left: 0;
+    }
 }
 @media screen and (max-width: 600px){
+    nav ul{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-box{
+        top: 75%;
+    }
     .grid-container{
         display: grid;
         grid-template-columns: none;
@@ -60,5 +84,15 @@
     #inv-display li a img{
         width: 50%;
         height: 50%;
+      }
+    
+    .details{
+        margin-top: 10px;
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .details p{
+        font-size: large;
       }
 }

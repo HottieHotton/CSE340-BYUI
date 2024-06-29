@@ -1,8 +1,11 @@
 <!-- Content Heading -->
 <% if (title) { %>
 <h1><%= title %></h1>
-<% } else { res.redirect('/') } %> <% message %>
+<% } else { res.redirect('/') } %>
 <div class="error-image">
+  <% if (message) { %>
+    <h2><%= message %></h2>
+    <% }%>
   <img src="<%= imageUrl %>" alt="https://www.vecteezy.com/" />
   <a href="https://www.vecteezy.com/">https://www.vecteezy.com/</a>
 </div>

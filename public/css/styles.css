@@ -23,21 +23,29 @@ body{
 
 nav ul{
   display: flex;
-  padding: 5px 5px 5px 5px;
+  padding: 5px;
   background-color: black;
   justify-content: space-evenly;
   list-style-type: none;
 }
 
-nav ul li{
-  padding: 10px;
+nav ul li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  flex: 1;
 }
 
-nav ul li a{
+nav ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
   font-size: larger;
   text-decoration: none;
-  padding: 50px;
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 nav ul li a:hover{
@@ -82,7 +90,7 @@ nav ul li a:hover{
   font-size: 2vw;
   font-weight: 900;
   position: absolute;
-  top: 35%;
+  top: 40%;
   left: 15%;
   line-height: .5;
   padding: 1vw;
@@ -160,4 +168,23 @@ nav ul li a:hover{
 
 .error-image img{
   width:100%
+}
+
+.carTitle{
+  text-align: center;
+}
+
+.car{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.carImage img{
+  width: 100%
+}
+
+.details{
+  margin-left: 20px;
+  border: 2px solid black;
+  padding-left: 10px;
 }
