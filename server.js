@@ -51,7 +51,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", utilities.handleErrors(inventoryRoute))
-app.use("/account", require("./routes/accountRoute"))
+app.use("/account", utilities.handleErrors(accountRoute))
 app.get("/login", utilities.handleErrors(accountController.buildLogin))
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
@@ -84,6 +84,6 @@ app.use(async (err, req, res, next) => {
     title: err.status || 'Server Error',
     message,
     nav,
-    imageUrl: '../../images/vecteezy_404-error-page-vector-free-download_10886263.jpg'
+    imageUrl: '../../../images/vecteezy_404-error-page-vector-free-download_10886263.jpg'
   })
 })

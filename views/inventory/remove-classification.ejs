@@ -1,0 +1,27 @@
+<!-- Content Heading -->
+<% if (title) { %>
+<h1 class="add-class"><%= title %></h1>
+<% } else { res.redirect('/') } %>
+
+<!-- Message -->
+
+<div id="messages">
+  <% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %> <% if(error.msg != "Invalid value")
+    {%>
+    <li><%= error.msg %></li>
+    <% }}) %>
+  </ul>
+  <% } %> <%- messages() %>
+</div>
+
+<div>
+  <form action="/inv/admin/remove-classification/" method="POST">
+    <label for="classificationList">Classification:</label>
+    <%- classification_drop %>
+    <button type="submit" id="removedClass">Delete</button>
+  </form>
+</div>
+
+<a id="adminPage" href="/inv/admin/"><button>Go Back</button></a>

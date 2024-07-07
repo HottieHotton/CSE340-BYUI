@@ -1,0 +1,33 @@
+<!-- Content Heading -->
+<% if (title) { %>
+<h1 class="add-class"><%= title %></h1>
+<% } else { res.redirect('/') } %>
+
+<!-- Message -->
+
+<div id="messages">
+  <% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %> <% if(error.msg != "Invalid value")
+    {%>
+    <li><%= error.msg %></li>
+    <% }}) %>
+  </ul>
+  <% } %> <%- messages() %>
+</div>
+
+<div>
+  <form action="/inv/admin/add-classification/" method="POST">
+    <h2 for="new_classification">Add Classification:</h2>
+      <input
+        type="text"
+        name="new_classification"
+        id="new_classification"
+        required
+        pattern="^[A-Za-z]+$"
+        placeholder="Press enter when ready"
+        value="<%= locals.classification_name %>"/>
+  </form>
+</div>
+
+<a id="adminPage" href="/inv/admin/"><button>Go Back</button></a>

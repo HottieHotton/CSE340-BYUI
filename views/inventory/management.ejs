@@ -1,0 +1,24 @@
+<!-- Content Heading -->
+<% if (title) { %>
+<h1 class="management"><%= title %></h1>
+<% } else { res.redirect('/') } %>
+
+<!-- Message -->
+<% if ("Vehicle" in messages) { %>
+<div id="messages"><%- messages %></div>
+<% } %>
+
+<div class="menu">
+    <h2>Add Classification</h2>
+  <a href="/inv/admin/add-classification"
+    ><button id="addClassificationButton">Add Classification</button></a
+  >
+  <h2>Remove Classification</h2>
+  <a href="/inv/admin/remove-classification"
+    ><button id="removeClassificationButton">Remove Classification</button></a
+  >
+  <h2>Add Inventory</h2>
+  <a href="/inv/admin/add-inventory"
+    ><button id="addInventoryButton">Add Inventory</button></a
+  >
+</div>

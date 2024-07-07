@@ -197,3 +197,59 @@ nav ul li a:hover{
 .loginForm div label{
   gap: 30px;
 }
+
+form{
+  text-align: center;
+  display: grid;
+  justify-content: center;
+  background-color: darkgrey;
+  width: 500px;
+  margin: 0 auto;
+}
+
+form input::placeholder{
+  text-align: center;
+}
+
+form input[type="text"]:valid,
+form input[type="number"]:valid,
+form textarea:valid,
+#classificationList:valid{
+  background-color: white;
+  border: 1px solid black;
+}
+
+form input[type="text"]:invalid,
+form input[type="number"]:invalid,
+form textarea:invalid,
+#classificationList:invalid{
+  border: 3px solid red;
+  background-color: lightgray;
+}
+
+form button{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#new_classification{
+  margin-bottom: 15px;
+}
+
+.menu{
+  display: grid;
+  text-align: center;
+  justify-content: center;
+  background-color: darkgray;
+  width: 500px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+#adminPage{
+  text-align: center;
+  display: grid;
+  width: 150px;
+  margin: 0 auto;
+  margin-top: 15px;
+}
