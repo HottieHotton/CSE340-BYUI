@@ -108,12 +108,12 @@ inv_validate.checkInvRegData = async (req, res, next) => {
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
-    let classificationList = await utilities.buildClassificationList();
+    let classification_drop = await utilities.buildClassificationList();
     res.render("inventory/add-inventory", {
       errors,
       title: "Add Inventory",
       nav,
-      classificationList,
+      classification_drop,
       ...req.body
     });
     return;
@@ -154,14 +154,14 @@ inv_validate.checkDeleteClassificationData = async (req, res, next) => {
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
-    let classificationList = await utilities.buildClassificationList(
+    let classification_drop = await utilities.buildClassificationList(
       req.body.classification_id
     );
     res.render("inventory/remove-classification/", {
       errors,
       title: "Remove Classification",
       nav,
-      classificationList,
+      classification_drop,
       ...req.body,
     });
     return;
