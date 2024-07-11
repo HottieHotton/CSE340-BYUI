@@ -26,7 +26,7 @@
     <label for="inv_model">Model:</label>
     <input type="text" name="inv_model" id="inv_model" value="<%= inv_model || '' %>" minlength="3" required>
     <label for="inv_description">Description:</label>
-    <textarea name="inv_description" id="inv_description" minlength="3" required style="width: 334px;"></textarea>
+    <textarea name="inv_description" id="inv_description" value="<%= inv_description || '' %>" minlength="3" required style="width: 334px;"></textarea>
     <label for="inv_image">Image Path:</label>
     <input type="text" name="inv_image" id="inv_image" value="<%= inv_image || '' %>" placeholder="/path/to/image.png" required>
     <label for="inv_thumbnail">Thumbnail Path:</label>

@@ -253,3 +253,18 @@ form button{
   margin: 0 auto;
   margin-top: 15px;
 }
+
+.inventoryManager{
+  display: block;
+  text-align: center;
+}
+
+#inventoryDisplay{
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+#updateForm input[type="submit"]{
+  margin-top: 10px;
+}

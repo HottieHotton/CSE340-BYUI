@@ -121,6 +121,103 @@ inv_validate.checkInvRegData = async (req, res, next) => {
   next();
 };
 
+inv_validate.editInventoryRules = () => {
+  return [
+    body("classification_id")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Classification is required.")
+      .bail()
+      .isInt()
+      .withMessage("Invalid classification ID."),
+    body("inv_make")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Make is required.")
+      .bail()
+      .isLength({ min: 3 })
+      .withMessage("Make must be at least 3 characters."),
+    body("inv_model")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Model is required.")
+      .bail()
+      .isLength({ min: 3 })
+      .withMessage("Model must be at least 3 characters."),
+    body("inv_description")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Description is required.")
+      .bail()
+      .isLength({ min: 3 })
+      .withMessage("Description must be 3 characters"),
+    body("inv_image")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Image Path is required."),
+    body("inv_thumbnail")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Thumbnail Path is required."),
+    body("inv_price")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Price is required.")
+      .bail()
+      .isFloat({ min: 0 })
+      .withMessage("Invalid price."),
+    body("inv_year")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Year is required.")
+      .bail()
+      .isInt({ min: 1900, max: new Date().getFullYear() + 1 })
+      .withMessage("Invalid year."),
+    body("inv_miles")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Miles is required.")
+      .bail()
+      .isInt({ min: 0 })
+      .withMessage("Invalid miles."),
+    body("inv_color")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Color is required.")
+      .bail()
+      .isLength({ min: 3 })
+      .withMessage("Color must be at least 3 characters."),
+  ];
+};
+
+inv_validate.checkInvUpdateData = async (req, res, next) => {
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    let classificationList = await utilities.buildClassificationList();
+    let name = req.inv_make +" "+req.inv_model
+    res.render("inventory/edit-vehicle", {
+      errors,
+      title: "Edit " + name,
+      nav,
+      classificationList,
+      ...req.body
+    });
+    return;
+  }
+  next();
+};
+
 inv_validate.checkClassificationRegData = async (req, res, next) => {
   const { new_classification } = req.body;
   let errors = [];

@@ -1,0 +1,17 @@
+<!-- Content Heading -->
+<% if (title) { %>
+<h1 class="management"><%= title %></h1>
+<% } else { res.redirect('/') } %>
+
+<!-- Message -->
+<%- messages %>
+<div class="inventoryManager">
+<p>Select the classification you wish to view the inventory</p>
+<%- classificationSelect %>
+<table id="inventoryDisplay"></table>
+</div>
+
+
+
+<noscript>JavaScript must be enabled to use this page.</noscript>
+<script src="/js/inventory.js"></script>

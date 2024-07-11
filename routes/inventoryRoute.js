@@ -25,6 +25,13 @@ router.post("/admin/add-inventory",
     regValidate.checkInvRegData,
     invController.addInventory);
 
+router.get("/admin/manageInventory", invController.buildManageInventory)
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get("/edit/:inv_id", invController.editInventoryView);
+router.post("/update/", regValidate.editInventoryRules(),
+regValidate.checkInvUpdateData,
+invController.updateInventory)
+
 //NOTE: I unintentionally fixed my 500 errors long before I got to task 3
 //so I didn't realize we were tasked to do this until then. Just creating
 //the route just to show that it does work as expected.

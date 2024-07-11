@@ -4,9 +4,7 @@
 <% } else { res.redirect('/') } %>
 
 <!-- Message -->
-<% if ("Vehicle" in messages) { %>
-<div id="messages"><%- messages %></div>
-<% } %>
+<div id="messages"><%- messages() %></div>
 
 <div class="menu">
     <h2>Add Classification</h2>
@@ -21,4 +19,7 @@
   <a href="/inv/admin/add-inventory"
     ><button id="addInventoryButton">Add Inventory</button></a
   >
-</div>
+  <h2>Manage Inventory</h2>
+  <a href="/inv/admin/manageInventory"
+  ><button id="manageInventoryButton">Manage Inventory</button></a
+>
