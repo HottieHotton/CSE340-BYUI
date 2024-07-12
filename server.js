@@ -53,7 +53,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(utilities.checkJWTToken)
 app.get("/", utilities.handleErrors(baseController.buildHome))
-app.use("/inv", utilities.handleErrors(inventoryRoute))
+app.use("/inv", utilities.checkLogin, utilities.handleErrors(inventoryRoute))
 app.use("/account", utilities.handleErrors(accountRoute))
 app.get("/login", utilities.handleErrors(accountController.buildLogin))
 app.use(async (req, res, next) => {

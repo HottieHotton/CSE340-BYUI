@@ -32,6 +32,9 @@ router.post("/update/", regValidate.editInventoryRules(),
 regValidate.checkInvUpdateData,
 invController.updateInventory)
 
+router.get("/delete/:inv_id", invController.buildDeleteInv)
+router.post("/delete/" , invController.deleteInvById)
+
 //NOTE: I unintentionally fixed my 500 errors long before I got to task 3
 //so I didn't realize we were tasked to do this until then. Just creating
 //the route just to show that it does work as expected.

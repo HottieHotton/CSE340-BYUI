@@ -56,7 +56,8 @@ invCont.buildAdminPage = async function(req,res,next){
   res.render("inventory/management",{
     title: "Management",
     nav,
-    errors: null
+    errors: null,
+    messages: req.flash("notice") || null
   })
 }
 
@@ -126,6 +127,7 @@ invCont.buildNewInventory = async function (req,res,next){
     res.render("inventory/add-inventory",{
       title: "Add Inventory",
       nav,
+      messages: req.flash("notice") || null,
       classification_drop,
       inv_make: "",
       inv_model: "",
@@ -190,7 +192,7 @@ invCont.buildManageInventory = async function(req,res,next){
     title: "Inventory Management",
     nav,
     errors: null,
-    messages: null,
+    messages: req.flash("notice") || null,
     classificationSelect
   })
 }
@@ -214,7 +216,6 @@ invCont.editInventoryView = async function (req, res, next) {
   const itemData = await invModel.getVehicleById(inv_id)
   const classificationList = await utilities.buildClassificationList()
   const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`
-  console.log(itemData[0].inv_description)
   res.render("inventory/edit-vehicle", {
     title: "Edit " + itemName,
     nav,
@@ -231,6 +232,45 @@ invCont.editInventoryView = async function (req, res, next) {
     inv_miles: itemData[0].inv_miles,
     inv_color: itemData[0].inv_color,
   })
+}
+
+invCont.buildDeleteInv = async function(req,res,next){
+  const inv_id = parseInt(req.params.inv_id)
+  let nav = await utilities.getNav()
+  const itemData = await invModel.getVehicleById(inv_id)
+  const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`
+  res.render("inventory/delete-vehicle", {
+    title: "Delete " + itemName,
+    nav,
+    errors: null,
+    messages: req.flash("notice"),
+    inv_id: itemData[0].inv_id,
+    inv_make: itemData[0].inv_make,
+    inv_model: itemData[0].inv_model,
+    inv_year: itemData[0].inv_year,
+    inv_description: itemData[0].inv_description,
+  })
+}
+
+invCont.deleteInvById = async function(req,res,next){
+  const {inv_id} = req.body;
+  let result = await invModel.invDeleteById(inv_id)
+  if(result){
+    req.flash("notice", `The item was successfully deleted.`)
+    res.redirect("/inv/admin/manageInventory")
+  }else{
+    req.flash("This delete has failed.")
+    res.status(500).res.render("inventory/delete-vehicle", {
+      title: "Delete " + itemName,
+      nav,
+      errors: null,
+      inv_id: itemData[0].inv_id,
+      inv_make: itemData[0].inv_make,
+      inv_model: itemData[0].inv_model,
+      inv_year: itemData[0].inv_year,
+      inv_description: itemData[0].inv_description,
+    })
+  }
 }
 
 /* ***************************

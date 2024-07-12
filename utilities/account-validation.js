@@ -80,8 +80,8 @@ validate.loginRules = () =>{
       const emailExists = await accountModel.checkExistingEmail(
         account_email
       );
-      if (emailExists) {
-        throw new Error("Email exists. Please log in or use different email");
+      if (!emailExists) {
+        throw new Error("Email doesn't exist. Please register or use different email");
       }
     }),
   // password is required and must be strong password
@@ -103,6 +103,7 @@ validate.checkLoginData = async (req, res, next) => {
   const { account_email, account_password } = req.body
   let errors = []
   errors = validationResult(req)
+  console.log(errors)
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
     res.render("account/login", {

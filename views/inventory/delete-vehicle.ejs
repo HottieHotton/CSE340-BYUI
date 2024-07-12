@@ -1,0 +1,69 @@
+<!-- Content Heading -->
+<% if (title) { %>
+<h1 class="add-inv"><%= title %></h1>
+<% } else { res.redirect('/') } %>
+
+<!-- Message -->
+
+<div id="messages">
+  <% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %> <% if(error.msg != "Invalid value")
+    {%>
+    <li><%= error.msg %></li>
+    <% }}) %>
+  </ul>
+  <% } %> <%- messages %>
+</div>
+
+<form id="deleteForm" action="/inv/delete/" method="POST">
+  <h3>Vehicle Information:</h3>
+  <h4>NOTE: THIS CANNOT BE UNDONE</h4>
+  <label for="inv_make">Make:</label>
+  <input
+    type="text"
+    name="inv_make"
+    id="inv_make"
+    value="<%= inv_make || '' %>"
+    minlength="3"
+    required
+    readOnly
+  />
+  <label for="inv_model">Model:</label>
+  <input
+    type="text"
+    name="inv_model"
+    id="inv_model"
+    value="<%= inv_model || '' %>"
+    minlength="3"
+    required
+    readOnly
+  />
+  <label for="inv_description">Description:</label>
+  <textarea
+    name="inv_description"
+    id="inv_description"
+    minlength="3"
+    required
+    readOnly
+    style="width: 334px"
+  >
+<%= inv_description || '' %></textarea>
+  <label for="inv_year">Year:</label>
+  <input
+    type="number"
+    name="inv_year"
+    id="inv_year"
+    value="<%= inv_year || '' %>"
+    min="1900"
+    max="<%= new Date().getFullYear() + 1 %>"
+    required
+    readOnly
+  />
+  <input type="submit" name="submit" value="Delete Vehicle" />
+  <input type="hidden" name="inv_id" 
+  <% if(locals.inv_id) { %> 
+    value="<%= locals.inv_id %>" 
+  <% } %>>
+</form>
+<a id="adminPage" href="/inv/admin/manageInventory"><button>Go Back</button></a>
