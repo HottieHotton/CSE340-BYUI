@@ -22,4 +22,15 @@ router.post(
   utilities.handleErrors(accountController.registerAccount)
 );
 
+router.get("/update", utilities.checkLogin, accountController.buildUpdatePage);
+router.get("/update/details", utilities.checkLogin, accountController.buildDetailsPage);
+router.post("/update/details", 
+regValidate.updateAccountRules(), 
+regValidate.checkUpdateData,
+utilities.handleErrors(accountController.updateAccount));
+router.get("/update/password", utilities.checkLogin, accountController.buildUpdatePassword);
+router.post("/update/password", utilities.handleErrors(accountController.updatePassword))
+
+router.get("/logout", accountController.logOut);
+
 module.exports = router;

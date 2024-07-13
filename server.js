@@ -52,8 +52,16 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(utilities.checkJWTToken)
+app.use(async (req, res, next) => {
+  if (res.locals.loggedin == 1) {
+      res.locals.name = res.locals.accountData.account_firstname;
+  }else{
+    res.locals.loggedin = 0
+  }
+  next();
+});
 app.get("/", utilities.handleErrors(baseController.buildHome))
-app.use("/inv", utilities.checkLogin, utilities.handleErrors(inventoryRoute))
+app.use("/inv", utilities.handleErrors(inventoryRoute))
 app.use("/account", utilities.handleErrors(accountRoute))
 app.get("/login", utilities.handleErrors(accountController.buildLogin))
 app.use(async (req, res, next) => {

@@ -1,6 +1,6 @@
-const form = document.querySelector("#updateForm");
+const account = document.querySelector("form");
 
-form.addEventListener("change", function () {
+account.addEventListener("change", function () {
   const updateBtn = document.querySelector("input[type='submit']");
   updateBtn.removeAttribute("disabled");
 });

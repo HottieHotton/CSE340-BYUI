@@ -268,3 +268,9 @@ form button{
 #updateForm input[type="submit"]{
   margin-top: 10px;
 }
+
+header div a{
+  background-color: lightgray;
+  padding: 5px;
+  margin-left: 10px;
+}
